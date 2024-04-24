@@ -1,6 +1,14 @@
-import { Briefcase, HomeIcon, MessagesSquare, SearchIcon, UserIcon } from 'lucide-react';
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import {
+  Briefcase,
+  HomeIcon,
+  MessagesSquare,
+  SearchIcon,
+  UserIcon,
+} from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Button } from './ui/button';
 
 function Header() {
   return (
@@ -24,7 +32,7 @@ function Header() {
         </form>
       </div>
 
-      <div className='flex items-center space-x-4 px-6'>
+      <div className="flex items-center space-x-4 px-6">
         <Link href="/" className="icon">
           <HomeIcon className="h-5" />
           <p>Home</p>
@@ -45,9 +53,15 @@ function Header() {
           <p>Messaging</p>
         </Link>
 
-        {/* User Button */}
+        <SignedIn>
+            <UserButton />
+        </SignedIn>
 
-        {/* Sign In Button (IF not signed in) */}
+        <SignedOut>
+            <Button asChild variant='secondary'>
+                <SignInButton />
+            </Button>
+        </SignedOut>
       </div>
     </div>
   );
